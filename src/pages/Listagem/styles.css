@@ -1,0 +1,8 @@
+@media (min-width: 767px) {
+    .containe {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background-color: rgb(228, 226, 229);
+    }    
+}
