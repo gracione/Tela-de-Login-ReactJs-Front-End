@@ -34,6 +34,7 @@ export default function Logon() {
             placeholder="Seu e-mail"
             value={email}
             onChange={e => setEmail(e.target.value)}
+            required
           />
           <input
             name='password'
@@ -41,6 +42,7 @@ export default function Logon() {
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            required
           />
 
           <button className="button" type="submit">Entrar</button>
