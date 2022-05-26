@@ -7,6 +7,8 @@ import './styles.css';
 
 export default function Register() {
   const [name, setName] = useState('');
+  const [numero, setNumero] = useState('');
+  const [id_sexo, setId_Sexo] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -18,18 +20,21 @@ export default function Register() {
 
     const data = {
       name,
+      numero,
+      id_sexo,
       email,
       password,
       "password_confirmation": confirmPassword,
     };
 
     try {
-      api.post('api/register', data)
-        .then(async (res) => {
-          if (res.data.status) {
-            const responseLogin = await api.post('api/login', { email, password });
-            localStorage.setItem('token', responseLogin.data.token);
-            history.push('/lists');
+      api.post('auth/register', data)
+      .then(async (res) => {
+        if (res.data.status) {
+          const response = await api.post('/auth/login', { email, password });
+          console.log(response.data.data.token);
+          localStorage.setItem('token',response.data.data.token);
+          history.push('/lists');
           }
         });
     } catch (err) {
@@ -51,6 +56,17 @@ export default function Register() {
             placeholder="Seu Nome"
             value={name}
             onChange={e => setName(e.target.value)}
+          />
+
+          <input
+            placeholder="Seu Numero"
+            value={numero}
+            onChange={e => setNumero(e.target.value)}
+          />
+          <input
+            placeholder="Teste"
+            value={id_sexo}
+            onChange={e => setId_Sexo(e.target.value)}
           />
 
           <input
